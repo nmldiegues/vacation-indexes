@@ -1,0 +1,87 @@
+package pt.ist.fenixframework.vacation.domain;
+
+class VacationManager {
+    boolean populated;
+}
+
+relation DRHasApplication {
+    .pt.ist.fenixframework.DomainRoot playsRole;
+    VacationManager playsRole application;
+}
+
+
+class CarReservation {
+	int id;
+	int numUsed;
+	int numFree;
+	int numTotal;
+	int price;
+}
+
+class RoomReservation {
+	int id;
+	int numUsed;
+	int numFree;
+	int numTotal;
+	int price;
+}
+
+class FlightReservation {
+	int id;
+	int numUsed;
+	int numFree;
+	int numTotal;
+	int price;
+}
+
+class Customer {
+	int id;
+}
+
+class ReservationInfo {
+	int id;
+	int type;
+	int price;
+}
+
+relation ManagerHasCustomers {
+	VacationManager playsRole;
+	Customer playsRole customers {
+		multiplicity 0..*;
+		indexed by id;
+	}
+}
+
+relation ManagerHasCars {
+	VacationManager playsRole;
+	CarReservation playsRole cars {
+		multiplicity 0..*;
+		indexed by id;
+	}
+}
+
+relation ManagerHasRooms {
+	VacationManager playsRole;
+	RoomReservation playsRole rooms {
+		multiplicity 0..*;
+		indexed by id;
+	}
+}
+
+relation ManagerHasFlights {
+	VacationManager playsRole;
+	FlightReservation playsRole flights {
+		multiplicity 0..*;
+		indexed by id;
+	}
+}
+
+relation CustomerHasReservations {
+	Customer playsRole customer {
+		multiplicity 1..1;
+	}
+	ReservationInfo playsRole infos {
+		multiplicity 0..*;
+		indexed by id;
+	}
+}
