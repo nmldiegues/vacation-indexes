@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.vacation.domain.VacationManager;
 
-public class DeleteCustomerOperation extends Operation {
+public final class DeleteCustomerOperation implements Operation {
 
     final private VacationManager managerPtr;
     final private int customerId;

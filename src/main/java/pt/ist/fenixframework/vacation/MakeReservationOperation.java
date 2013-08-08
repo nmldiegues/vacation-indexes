@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.vacation.domain.VacationManager;
 
-public class MakeReservationOperation extends Operation {
+public final class MakeReservationOperation implements Operation {
 
     final private VacationManager manager;
     final private int[] types;

@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.vacation.domain.VacationManager;
 
-public class UpdateTablesOperation extends Operation {
+public final class UpdateTablesOperation implements Operation {
 
     final private VacationManager managerPtr;
     final private int[] types;
