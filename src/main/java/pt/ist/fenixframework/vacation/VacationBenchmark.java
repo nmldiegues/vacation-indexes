@@ -237,8 +237,6 @@ public class VacationBenchmark {
     public static void main(String argv[]) throws InterruptedException {
 	VacationManager manager;
 	Client clients[];
-	long start;
-	long stop;
 
 	Config mem = new InfinispanConfig() {{
 	    domainModelURLs = resourcesToURLArray("vacation.dml");
@@ -261,7 +259,6 @@ public class VacationBenchmark {
 	long steps = 0L;
 	long aborts = 0L;
 	
-	start = System.currentTimeMillis();
 	for (int i = 1; i < numThread; i++) {
 	    clients[i].start();
 	}
@@ -274,9 +271,6 @@ public class VacationBenchmark {
 	    aborts += clients[i].aborts;
 	}
 
-	stop = System.currentTimeMillis();
-
-	long diff = stop - start;
 	System.out.println(steps + " " + aborts);
 	//manager.checkTables(vac);
 

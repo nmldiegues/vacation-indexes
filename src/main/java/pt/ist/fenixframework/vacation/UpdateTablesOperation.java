@@ -1,7 +1,6 @@
 package pt.ist.fenixframework.vacation;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.vacation.domain.VacationManager;

@@ -45,7 +45,7 @@ public class Client extends Thread {
 	while (true) {
 	    
 	    int r = randomPtr.posrandom_generate() % 100;
-	    boolean readOnly = (Math.abs(ran.nextInt()) % 100) < readOnlyPerc;
+	    boolean readOnly = ran.nextInt(100) < readOnlyPerc;
 	    ActionType action = selectAction(r, percentUser);
 
 	    Operation op = null;
