@@ -7,7 +7,7 @@ CLASS="pt.ist.fenixframework.vacation.VacationBenchmark"
 
 #fenix framework
 D_VARS="-Dfenixframework.appName=client"
-D_VARS="$D_VARS -Dfenixframework.domainModelURLs=fenix-framework-domain-root.dml,books.dml"
+D_VARS="$D_VARS -Dfenixframework.domainModelURLs=fenix-framework-domain-root.dml,vacation.dml"
 D_VARS="$D_VARS -Dfenixframework.ispnConfigFile=ispn.xml"
 #D_VARS="$D_VARS -Dfenixframework.coreThreadPoolSize=1"
 #D_VARS="$D_VARS -Dfenixframework.maxThreadPoolSize=2"
@@ -39,7 +39,7 @@ for jar in `ls ${TARGET_DIR}/dependency/*.jar`; do
     CP="$CP:$jar";
 done
 
-#CMD="java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=19999,suspend=y $D_VARS -cp $CP $CLASS"
-CMD="java $D_VARS -cp $CP $CLASS -c $1 -n $2 -q $3 -r $4 -t $5 -u $6 -ro $7"
+CMD="java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=19999,suspend=y $D_VARS -cp $CP $CLASS -c $1 -n $2 -q $3 -r $4 -t $5 -u $6 -ro $7"
+#CMD="java $D_VARS -cp $CP $CLASS -c $1 -n $2 -q $3 -r $4 -t $5 -u $6 -ro $7"
 #echo $CMD
 eval $CMD
