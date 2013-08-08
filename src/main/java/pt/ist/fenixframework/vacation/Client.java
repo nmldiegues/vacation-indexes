@@ -28,13 +28,13 @@ public class Client extends Thread {
 	this.readOnlyPerc = readOnlyPerc;
     }
 
-    public int selectAction(int r, int percentUser) {
+    public ActionType selectAction(int r, int percentUser) {
 	if (r < percentUser) {
-	    return Definitions.ACTION_MAKE_RESERVATION;
+	    return ActionType.ACTION_MAKE_RESERVATION;
 	} else if ((r & 1) == 1) {
-	    return Definitions.ACTION_DELETE_CUSTOMER;
+	    return ActionType.ACTION_DELETE_CUSTOMER;
 	} else {
-	    return Definitions.ACTION_UPDATE_TABLES;
+	    return ActionType.ACTION_UPDATE_TABLES;
 	}
     }
 
@@ -46,14 +46,14 @@ public class Client extends Thread {
 	    
 	    int r = randomPtr.posrandom_generate() % 100;
 	    boolean readOnly = (Math.abs(ran.nextInt()) % 100) < readOnlyPerc;
-	    int action = selectAction(r, percentUser);
+	    ActionType action = selectAction(r, percentUser);
 
 	    Operation op = null;
-	    if (action == Definitions.ACTION_MAKE_RESERVATION) {
+	    if (action == ActionType.ACTION_MAKE_RESERVATION) {
 		op = new MakeReservationOperation(managerPtr, randomPtr, numQueryPerTransaction, queryRange, readOnly);
-	    } else if (action == Definitions.ACTION_DELETE_CUSTOMER) {
+	    } else if (action == ActionType.ACTION_DELETE_CUSTOMER) {
 		op = new DeleteCustomerOperation(managerPtr, randomPtr, queryRange);
-	    } else if (action == Definitions.ACTION_UPDATE_TABLES) {
+	    } else if (action == ActionType.ACTION_UPDATE_TABLES) {
 		op = new UpdateTablesOperation(managerPtr, randomPtr, numQueryPerTransaction, queryRange);
 	    }
 	    aborts += op.doOperation();

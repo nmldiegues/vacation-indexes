@@ -2,12 +2,6 @@ package pt.ist.fenixframework.vacation;
 
 public class Definitions {
 
-    public final static int ACTION_MAKE_RESERVATION = 0;
-
-    public final static int ACTION_DELETE_CUSTOMER = 1;
-
-    public final static int ACTION_UPDATE_TABLES = 2;
-
     public final static int PARAM_DEFAULT_CLIENTS = 1;
 
     public final static int PARAM_DEFAULT_NUMBER = 10;
