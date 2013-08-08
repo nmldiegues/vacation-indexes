@@ -11,6 +11,13 @@ import pt.ist.fenixframework.backend.infinispan.InfinispanConfig;
 import pt.ist.fenixframework.vacation.domain.VacationManager;
 
 public class VacationBenchmark {
+	
+    private final static int PARAM_DEFAULT_CLIENTS = 1;
+    private final static int PARAM_DEFAULT_NUMBER = 10;
+    private final static int PARAM_DEFAULT_QUERIES = 90;
+    private final static int PARAM_DEFAULT_RELATIONS = 1 << 16;
+    private final static int PARAM_DEFAULT_TRANSACTIONS = 1 << 26;
+    private final static int PARAM_DEFAULT_USER = 80;
 
 	static {
 		// Set up transactional stores for JBoss TS
@@ -24,12 +31,12 @@ public class VacationBenchmark {
     public static void displayUsage(String appName) {
 	System.out.println("Usage: %s [options]\n" + appName);
 	System.out.println("\nOptions:                                             (defaults)\n");
-	System.out.println("    c <UINT>   Number of [c]lients                   (%i)\n" + Definitions.PARAM_DEFAULT_CLIENTS);
-	System.out.println("    n <UINT>   [n]umber of user queries/transaction  (%i)\n" + Definitions.PARAM_DEFAULT_NUMBER);
-	System.out.println("    q <UINT>   Percentage of relations [q]ueried     (%i)\n" + Definitions.PARAM_DEFAULT_QUERIES);
-	System.out.println("    r <UINT>   Number of possible [r]elations        (%i)\n" + Definitions.PARAM_DEFAULT_RELATIONS);
-	System.out.println("    t <UINT>   Number of [t]ransactions              (%i)\n" + Definitions.PARAM_DEFAULT_TRANSACTIONS);
-	System.out.println("    u <UINT>   Percentage of [u]ser transactions     (%i)\n" + Definitions.PARAM_DEFAULT_USER);
+	System.out.println("    c <UINT>   Number of [c]lients                   (%i)\n" + PARAM_DEFAULT_CLIENTS);
+	System.out.println("    n <UINT>   [n]umber of user queries/transaction  (%i)\n" + PARAM_DEFAULT_NUMBER);
+	System.out.println("    q <UINT>   Percentage of relations [q]ueried     (%i)\n" + PARAM_DEFAULT_QUERIES);
+	System.out.println("    r <UINT>   Number of possible [r]elations        (%i)\n" + PARAM_DEFAULT_RELATIONS);
+	System.out.println("    t <UINT>   Number of [t]ransactions              (%i)\n" + PARAM_DEFAULT_TRANSACTIONS);
+	System.out.println("    u <UINT>   Percentage of [u]ser transactions     (%i)\n" + PARAM_DEFAULT_USER);
 	System.exit(1);
     }
 
@@ -42,12 +49,12 @@ public class VacationBenchmark {
     public int READ_ONLY_PERC;
 
     public void setDefaultParams() {
-	CLIENTS = Definitions.PARAM_DEFAULT_CLIENTS;
-	NUMBER = Definitions.PARAM_DEFAULT_NUMBER;
-	QUERIES = Definitions.PARAM_DEFAULT_QUERIES;
-	RELATIONS = Definitions.PARAM_DEFAULT_RELATIONS;
-	TRANSACTIONS = Definitions.PARAM_DEFAULT_TRANSACTIONS;
-	USER = Definitions.PARAM_DEFAULT_USER;
+	CLIENTS = PARAM_DEFAULT_CLIENTS;
+	NUMBER = PARAM_DEFAULT_NUMBER;
+	QUERIES = PARAM_DEFAULT_QUERIES;
+	RELATIONS = PARAM_DEFAULT_RELATIONS;
+	TRANSACTIONS = PARAM_DEFAULT_TRANSACTIONS;
+	USER = PARAM_DEFAULT_USER;
     }
 
     public void parseArgs(String argv[]) {
