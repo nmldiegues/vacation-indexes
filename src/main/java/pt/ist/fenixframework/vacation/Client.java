@@ -28,42 +28,32 @@ public class Client extends Thread {
 	this.readOnlyPerc = readOnlyPerc;
     }
 
-    public int selectAction(int r, int percentUser) {
-	if (r < percentUser) {
-	    return Definitions.ACTION_MAKE_RESERVATION;
-	} else if ((r & 1) == 1) {
-	    return Definitions.ACTION_DELETE_CUSTOMER;
-	} else {
-	    return Definitions.ACTION_UPDATE_TABLES;
+	private static ActionType selectAction(int r, int percentUser) {
+		if (r < percentUser) {
+			return ActionType.ACTION_MAKE_RESERVATION;
+		} else if ((r & 1) == 1) {
+			return ActionType.ACTION_DELETE_CUSTOMER;
+		} else {
+			return ActionType.ACTION_UPDATE_TABLES;
+		}
 	}
-    }
 
-    @Override
-    public void run() {
-	long start = System.nanoTime();
-	java.util.Random ran = new java.util.Random();
-	while (true) {
-	    
-	    int r = randomPtr.posrandom_generate() % 100;
-	    boolean readOnly = (Math.abs(ran.nextInt()) % 100) < readOnlyPerc;
-	    int action = selectAction(r, percentUser);
-
-	    Operation op = null;
-	    if (action == Definitions.ACTION_MAKE_RESERVATION) {
-		op = new MakeReservationOperation(managerPtr, randomPtr, numQueryPerTransaction, queryRange, readOnly);
-	    } else if (action == Definitions.ACTION_DELETE_CUSTOMER) {
-		op = new DeleteCustomerOperation(managerPtr, randomPtr, queryRange);
-	    } else if (action == Definitions.ACTION_UPDATE_TABLES) {
-		op = new UpdateTablesOperation(managerPtr, randomPtr, numQueryPerTransaction, queryRange);
-	    }
-	    aborts += op.doOperation();
-	    
-	    steps++;
-	    long end = System.nanoTime();
-	    if (((end - start) / 1000000000) > numOperation) {
-		break;
-	    }
-	}
+	@Override
+	public void run() {
+		long start = System.nanoTime();
+		java.util.Random ran = new java.util.Random();
+		while (true) {
+			int r = randomPtr.posrandom_generate() % 100;
+			boolean readOnly = ran.nextInt(100) < readOnlyPerc;
+			final ActionType action = selectAction(r, percentUser);
+			final Operation op = action.createOperation(managerPtr, randomPtr, numQueryPerTransaction, queryRange, readOnly);
+			aborts += op.doOperation();
+			steps++;
+			long end = System.nanoTime();
+			if (((end - start) / 1000000000) > numOperation) {
+				break;
+			}
+		}
 
     }
 

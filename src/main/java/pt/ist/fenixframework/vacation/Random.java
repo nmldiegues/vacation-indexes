@@ -42,7 +42,6 @@ public class Random {
       mt[mti] &= 0xFFFFFFFF;
       /* for >32 bit machines */
     }
-    this.mti=mti;
   }
 
   public void random_seed(int seed) {
