@@ -1,10 +1,7 @@
 package pt.ist.fenixframework.vacation.domain;
 
-import java.lang.annotation.Annotation;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
-import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.CallableWithoutException;
 import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.vacation.Definitions;
@@ -377,9 +374,6 @@ public class VacationManager extends VacationManager_Base {
 	    public Void call() {
 		int i;
 		int numRelation = benchmark.RELATIONS;
-		int numTable = 3;
-
-		int t;
 
 		/* Check for unique customer IDs */
 		int percentQuery = benchmark.QUERIES;

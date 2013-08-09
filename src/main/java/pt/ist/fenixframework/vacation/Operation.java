@@ -1,8 +1,7 @@
 package pt.ist.fenixframework.vacation;
 
+public interface Operation {
 
-public abstract class Operation {
-
-    public abstract int doOperation();
+	int doOperation();
 
 }
